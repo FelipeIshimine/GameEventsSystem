@@ -3,5 +3,5 @@
 namespace ScriptableEventsSystem.Listeners
 {
 	[AddComponentMenu("GameEvents/GameEvent<Float>")]
-	public class FloatScriptableEventListener : ScriptableEventListener<float> { }
+	public class FloatGameEventListener : GameEventListener<float> { }
 }

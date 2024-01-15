@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using GameEventsSystem.Events;
+using ScriptableEventsSystem.Editor.Events;
 using ScriptableEventsSystem.Editor.Settings;
 using ScriptableEventsSystem.Events;
-using ScriptableEventsSystem.Events.Editor;
 using UnityEditor;
 using UnityEditor.ShortcutManagement;
 using UnityEditor.UIElements;

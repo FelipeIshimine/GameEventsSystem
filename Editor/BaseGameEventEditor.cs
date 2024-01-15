@@ -1,5 +1,6 @@
-﻿using ScriptableEventsSystem.Events;
-using ScriptableEventsSystem.Events.Editor;
+﻿using GameEventsSystem.Events;
+using ScriptableEventsSystem.Editor.Events;
+using ScriptableEventsSystem.Events;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;

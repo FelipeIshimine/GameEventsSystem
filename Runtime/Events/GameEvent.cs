@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace ScriptableEventsSystem.Events
+namespace GameEventsSystem.Events
 {
 	[CreateAssetMenu(menuName = "Scriptable Events/Default", order = 10)]
 	public class GameEvent : BaseGameEvent

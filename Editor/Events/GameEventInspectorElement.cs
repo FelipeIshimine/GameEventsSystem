@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using ScriptableEventsSystem.Editor;
+using GameEventsSystem.Events;
 using ScriptableEventsSystem.Events;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using Object = UnityEngine.Object;
 
-namespace ScriptableEventsSystem.Events.Editor
+namespace ScriptableEventsSystem.Editor.Events
 {
 	internal class GameEventInspectorElement : VisualElement
 	{

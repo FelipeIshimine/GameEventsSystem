@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ScriptableEventsSystem.Listeners
 {
-	public class ScriptableEventListener : BaseScriptableEventListener
+	public class GameEventListener : BaseGameEventListener
 	{
 		[field:SerializeField] public ScriptableEventReceiver Receiver { get; private set; }
 
@@ -14,7 +14,7 @@ namespace ScriptableEventsSystem.Listeners
 
 		private void React() => Receiver.Reactions?.Invoke();
 	}
-	public abstract class ScriptableEventListener<T> : BaseScriptableEventListener
+	public abstract class GameEventListener<T> : BaseGameEventListener
 	{
 		[field: SerializeField] public ScriptableEventReceiver<T> Receiver { get; private set; } = new ();
 
