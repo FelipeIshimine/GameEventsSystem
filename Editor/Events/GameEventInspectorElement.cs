@@ -558,7 +558,12 @@ namespace ScriptableEventsSystem.Editor.Events
 			container.Add(new Label()
 			{
 				name = "label",
-				style = { flexGrow = 1}
+				style = 
+				{
+					flexGrow = 1,
+					flexShrink = 1,
+					overflow = Overflow.Hidden
+				}
 			});
 			container.Add(new Label()
 			{
@@ -568,7 +573,8 @@ namespace ScriptableEventsSystem.Editor.Events
 					color = Color.cyan,
 					fontSize = 10,
 					unityTextAlign = TextAnchor.MiddleCenter,
-					unityFontStyleAndWeight = FontStyle.Italic
+					unityFontStyleAndWeight = FontStyle.Italic,
+					overflow = Overflow.Hidden
 				}
 			});
 		
@@ -639,7 +645,12 @@ namespace ScriptableEventsSystem.Editor.Events
 			container.Add(new Label()
 			{
 				name = "label",
-				style = { flexGrow = 1}
+				style =
+				{
+					flexGrow = 1,
+					flexShrink = 1,
+					overflow = Overflow.Hidden
+				}
 			});
 			container.Add(new Label()
 			{
@@ -649,7 +660,8 @@ namespace ScriptableEventsSystem.Editor.Events
 					color = Color.cyan,
 					fontSize = 10,
 					unityTextAlign = TextAnchor.MiddleCenter,
-					unityFontStyleAndWeight = FontStyle.Italic
+					unityFontStyleAndWeight = FontStyle.Italic,
+					overflow = Overflow.Hidden
 				}
 			});
 		

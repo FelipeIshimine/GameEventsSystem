@@ -309,7 +309,12 @@ namespace ScriptableEventsSystem.Editor
 			var label = new EditableTextField("label")
 			{
 				name = "label",
-				style = { height = 20 },
+				style = 
+				{ 
+					height = 20,
+					flexShrink = 1,
+					overflow = Overflow.Hidden 
+				},
 			};
 			var type = new Label("type")
 			{
@@ -319,7 +324,8 @@ namespace ScriptableEventsSystem.Editor
 					height = 20 ,
 					color = Color.cyan,
 					unityFontStyleAndWeight = FontStyle.Italic,
-					fontSize = 10
+					fontSize = 10,
+					overflow = Overflow.Hidden,
 				},
 			};
 			container.Add(label);
