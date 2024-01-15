@@ -1,0 +1,18 @@
+{
+    "name": "ScriptableEvents.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:f3e6cb06b7ac66549b5c862cc8ed213c"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

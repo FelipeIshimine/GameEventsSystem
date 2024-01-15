@@ -1,0 +1,19 @@
+{
+    "name": "ishimine.gameeventsystem",
+    "displayName": "Scriptable Events System",
+    "version": "1.0.0",
+    "unity": "2022.1",
+    "description": "A ScriptableObjects based event system.",
+    "author": 
+    {
+        "name": "Felipe Ishimine",
+        "email": "felipeishimine@gmail.com",
+        "url": "https://felipeishimine.github.io/"
+    },
+    "keywords": [
+        "events",
+        "scriptable objects"
+    ],
+    "dependencies": {
+    }
+}
