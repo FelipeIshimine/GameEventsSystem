@@ -2,7 +2,7 @@
 
 namespace GameEventsSystem.Events
 {
-	[CreateAssetMenu(menuName = "Scriptable Events/Float")]
+	[CreateAssetMenu(menuName = "Game Events/Float")]
 	public class FloatGameEvent : GameEvent<float>
 	{
 	}

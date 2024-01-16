@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GameEventsSystem.Events
 {
-	[CreateAssetMenu(menuName = "Scriptable Events/Default", order = 10)]
+	[CreateAssetMenu(menuName = "Game Events/Default", order = 10)]
 	public class GameEvent : BaseGameEvent
 	{
 		public event Action OnRaise;

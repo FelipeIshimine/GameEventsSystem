@@ -2,7 +2,7 @@
 
 namespace GameEventsSystem.Events
 {
-	[CreateAssetMenu(menuName = "Scriptable Events/Bool")]
+	[CreateAssetMenu(menuName = "Game Events/Bool")]
 	public class BoolGameEvent : GameEvent<bool>
 	{
 	}

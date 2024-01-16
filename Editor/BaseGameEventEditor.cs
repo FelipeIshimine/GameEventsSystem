@@ -1,18 +1,15 @@
 ﻿using GameEventsSystem.Events;
-using ScriptableEventsSystem.Editor.Events;
-using ScriptableEventsSystem.Events;
+using GameEventSystem.Editor.Events;
 using UnityEditor;
-using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
-namespace ScriptableEventsSystem.Editor
+namespace GameEventSystem.Editor
 {
 	[CustomEditor(typeof(BaseGameEvent),true)]
 	public class BaseGameEventEditor : UnityEditor.Editor
 	{
 		private BaseGameEvent gameEvent;
-
-		private GameEventInspectorElement gameEventInspectorElement;
+		private GameEventInspectorElement inspectorElement;
 
 		private void OnEnable()
 		{
@@ -21,15 +18,13 @@ namespace ScriptableEventsSystem.Editor
 
 		private void OnDisable()
 		{
-			gameEventInspectorElement?.RemoveFromHierarchy();
+			inspectorElement?.RemoveFromHierarchy();
 		}
 
 		public override VisualElement CreateInspectorGUI()
 		{
-			gameEventInspectorElement ??=  new GameEventInspectorElement();
-			gameEventInspectorElement.SetGameEvent(gameEvent);
-			return gameEventInspectorElement;
+			inspectorElement ??=  new GameEventInspectorElement(gameEvent,true);
+			return inspectorElement;
 		}
-
 	}
 }

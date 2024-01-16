@@ -4,10 +4,10 @@ using ScriptableEventsSystem.Events;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace ScriptableEventsSystem.Receiver
+namespace GameEventSystem.Receiver
 {
 	[System.Serializable]
-	public class ScriptableEventReceiver<T, TB> : BaseScriptableEventReceiver where T : GameEvent<TB>
+	public class GameEventReceiver<T, TB> : BaseScriptableEventReceiver where T : GameEvent<TB>
 	{
 		[field:SerializeField] public T TargetEvent { get; set; }
 		[field:SerializeField] public UnityEvent<TB> Reaction { get; set; }
@@ -19,7 +19,7 @@ namespace ScriptableEventsSystem.Receiver
 	}
 	
 	[System.Serializable]
-	public class ScriptableEventReceiver<T> : BaseScriptableEventReceiver
+	public class GameEventReceiver<T> : BaseScriptableEventReceiver
 	{
 		[field:SerializeField] public GameEvent<T> TargetEvent { get; set; }
 		[field:SerializeField] public UnityEvent<T> Reaction { get; set; }
@@ -31,7 +31,7 @@ namespace ScriptableEventsSystem.Receiver
 	}
 
 	[System.Serializable]
-	public class ScriptableEventReceiver : BaseScriptableEventReceiver
+	public class GameEventReceiver : BaseScriptableEventReceiver
 	{
 		public event Action OnRaise { add => Target.OnRaise+= value; remove => Target.OnRaise -= value; }
 		public GameEvent Target;

@@ -1,19 +1,19 @@
 ﻿using System.Reflection;
 using GameEventsSystem.Events;
-using ScriptableEventsSystem.Events;
-using ScriptableEventsSystem.Receiver;
+using GameEventSystem.Receiver;
+using ScriptableEventsSystem.Editor;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
-namespace ScriptableEventsSystem.Editor
+namespace GameEventSystem.Editor
 {
-	[CustomPropertyDrawer(typeof(ScriptableEventReceiver))]
+	[CustomPropertyDrawer(typeof(GameEventReceiver))]
 	public class ScriptableEventReceiverEditor : PropertyDrawer
 	{
 		public override VisualElement CreatePropertyGUI(SerializedProperty property)
 		{
-			ScriptableEventReceiver receiver = (ScriptableEventReceiver)fieldInfo.GetValue(property.serializedObject.targetObject);
+			GameEventReceiver receiver = (GameEventReceiver)fieldInfo.GetValue(property.serializedObject.targetObject);
 
 
 			var eventNameAttribute = fieldInfo.GetCustomAttribute<AutoEvent>();
@@ -40,11 +40,11 @@ namespace ScriptableEventsSystem.Editor
 			{
 				text = property.displayName
 			};
-			var targetField = new PropertyField(property.FindPropertyRelative(nameof(ScriptableEventReceiver.Target)), string.Empty);
+			var targetField = new PropertyField(property.FindPropertyRelative(nameof(GameEventReceiver.Target)), string.Empty);
 			targetField.SetEnabled(isTargetFieldEnable);
 			container.Add(targetField);
-			container.Add(new PropertyField(property.FindPropertyRelative(nameof(ScriptableEventReceiver.TriggerLimit))));
-			container.Add(new PropertyField(property.FindPropertyRelative(nameof(ScriptableEventReceiver.Reactions))));
+			container.Add(new PropertyField(property.FindPropertyRelative(nameof(GameEventReceiver.TriggerLimit))));
+			container.Add(new PropertyField(property.FindPropertyRelative(nameof(GameEventReceiver.Reactions))));
 
 			return container;
 		}

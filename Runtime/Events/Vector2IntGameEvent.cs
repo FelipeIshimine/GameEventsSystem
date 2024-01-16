@@ -2,7 +2,7 @@
 
 namespace GameEventsSystem.Events
 {
-	[CreateAssetMenu(menuName = "Scriptable Events/Vector2Int")]
+	[CreateAssetMenu(menuName = "Game Events/Vector2Int")]
 	public class Vector2IntGameEvent : GameEvent<Vector2Int>
 	{
 	}

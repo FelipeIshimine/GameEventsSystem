@@ -1,21 +1,70 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using GameEventsSystem.Events;
-using ScriptableEventsSystem.Editor;
+﻿using GameEventsSystem.Events;
 using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEditor.UIElements;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
-using Object = UnityEngine.Object;
 
 namespace GameEventSystem.Editor.Events
 {
-	internal class GameEventInspectorElement : VisualElement
+	internal class GameVariableInspectorElement : GameEventInspectorElement
 	{
-		protected readonly bool ShowScriptField;
+		private VisualElement valueContainer;
+
+		public GameVariableInspectorElement(BaseGameEvent selectedEvent,bool showScriptField) : base(selectedEvent,showScriptField)
+		{
+		}
+		
+		public override void SetGameEvent(BaseGameEvent selectedEvent)
+		{
+			Debug.Log("GameVariableInspectorElement.SetGameEvent");
+			base.SetGameEvent(selectedEvent);
+			
+			SerializedObject serializedObject = new SerializedObject(selectedEvent);
+
+			if (Application.isPlaying)
+			{
+				var currentValueProperty = serializedObject.FindProperty("StartValue");
+				Debug.Log(currentValueProperty.propertyPath);
+				var field = new PropertyField(currentValueProperty)
+				{
+					name="StartValue",
+					style =
+					{
+						flexGrow = 1,
+						flexShrink = 1
+					},
+					label = "Value",
+					visible = true
+				};
+				Insert(ShowScriptField?1:0,field);
+			}
+			else
+			{
+				var currentValueProperty = serializedObject.FindProperty("CurrentValue");
+				Debug.Log(currentValueProperty.propertyPath);
+				var field = new PropertyField(currentValueProperty)
+				{
+					name="CurrentValue",
+					style =
+					{
+						flexGrow = 1,
+						flexShrink = 1
+					},
+					label = "Value",
+					visible = true
+				};
+				Insert(ShowScriptField?1:0,field);
+			}
+			//Insert(1,valueContainer);
+			//Add(valueContainer);
+			
+			Add(new Label("ASDASDASDAS"));
+			Debug.Log("ASDASDASDAS");
+		}
+	}
+	
+	/*internal class GameVariableInspectorElement : VisualElement
+	{
 		private readonly List<Object> assetsListFiltered = new List<Object>();
 		private readonly List<Object> contextAssetListFiltered = new List<Object>();
 		
@@ -45,30 +94,25 @@ namespace GameEventSystem.Editor.Events
 		private Action currentRaiseUnregisterCallback;
 		private ObjectField scriptField;
 
-		/*public GameEventInspectorElement(bool showScriptField)
+		public GameVariableInspectorElement()
 		{
-			this.ShowScriptField = showScriptField;
 			Initialize();
-		}*/
+		}
 
-		public GameEventInspectorElement(BaseGameEvent gameEvent, bool showScriptField)
+		public GameVariableInspectorElement(BaseGameEvent gameEvent)
 		{
-			this.ShowScriptField = showScriptField;
 			Initialize();
 			SetGameEvent(gameEvent);
 		}
 		
 		private void Initialize()
 		{
-			if(ShowScriptField)
+			scriptField = new ObjectField("Script")
 			{
-				scriptField = new ObjectField("Script")
-				{
-					objectType = typeof(MonoScript),
-				};
-				scriptField.SetEnabled(false);
-				Add(scriptField);
-			}
+				objectType = typeof(MonoScript),
+			};
+			scriptField.SetEnabled(false);
+			Add(scriptField);
 			
 			style.flexGrow = 1;
 
@@ -201,7 +245,7 @@ namespace GameEventSystem.Editor.Events
 
 		private void UnregisterEvents(DetachFromPanelEvent evt) => UnregisterEvents();
 
-		public virtual void SetGameEvent(BaseGameEvent selectedEvent)
+		public void SetGameEvent(BaseGameEvent selectedEvent)
 		{
 			var parameterType = selectedEvent.GetParameterType();
 			if (parameterType != null)
@@ -289,12 +333,59 @@ namespace GameEventSystem.Editor.Events
 			RefreshFilteredContextList();
 			RefreshFilteredAssetsList();
 
-			if (myEvent != null && scriptField !=null)
+			if (myEvent != null)
 			{
 				scriptField.value = MonoScript.FromScriptableObject(myEvent);
 			}
 		
-		
+			var serializedObject = new SerializedObject(selectedEvent);
+			if (Application.isPlaying)
+			{
+				var currentValueProperty = serializedObject.FindProperty("StartValue");
+				if (currentValueProperty != null)
+				{
+					var field = new PropertyField(currentValueProperty)
+					{
+						name="StartValue",
+						style =
+						{
+							flexGrow = 1,
+							flexShrink = 1
+						},
+						label = "Value",
+						visible = true
+					};
+					Insert(0,field);
+				}
+				else
+				{
+					Debug.Log("NULL");
+				}
+			}
+			else
+			{
+				var currentValueProperty = serializedObject.FindProperty("CurrentValue");
+				if (currentValueProperty != null)
+				{
+					Debug.Log(currentValueProperty.propertyPath);
+					var field = new PropertyField(currentValueProperty)
+					{
+						name="CurrentValue",
+						style =
+						{
+							flexGrow = 1,
+							flexShrink = 1
+						},
+						label = "Value",
+						visible = true
+					};
+					Insert(0,field);
+				}
+				else
+				{
+					Debug.Log("NULL");
+				}
+			}
 		}
 
 		private void SetRaiseValue(ChangeEvent<Object> evt) => raiseValue = evt.newValue;
@@ -600,7 +691,6 @@ namespace GameEventSystem.Editor.Events
 
 		private VisualElement MakeAssetReferenceItem()
 		{
-			
 			VisualElement container = new VisualElement()
 			{
 				style =
@@ -659,5 +749,5 @@ namespace GameEventSystem.Editor.Events
 				RefreshContextList();
 			};
 		}
-	}
+	}*/
 }

@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using GameEventsSystem.Events;
-using ScriptableEventsSystem.Editor.Events;
+using GameEventSystem.Editor;
+using GameEventSystem.Editor.Events;
+using GameEventSystem.GameVariables;
 using ScriptableEventsSystem.Editor.Settings;
 using ScriptableEventsSystem.Events;
 using UnityEditor;
@@ -28,11 +30,15 @@ namespace ScriptableEventsSystem.Editor
 		private int filterTypeIndex;
 
 		private readonly Dictionary<BaseGameEvent, VisualElement> eventToVisualElement = new();
-		private GameEventInspectorElement gameEventInspectorElement;
+		private VisualElement eventInspector;
 		private ScriptableEventsSettings settings;
 
 		private bool isEditingEventName;
-		
+		private VisualElement rightPanelContainer;
+		private Label eventTitle;
+		private Label typeLabel;
+		private UnityEditor.Editor cacheEditor;
+
 		[Shortcut(ScriptableEventsSettings.WINDOW_SHORTCUT_ID), MenuItem("Windows/Scriptable Events")]
 		public static void Open()
 		{
@@ -264,6 +270,20 @@ namespace ScriptableEventsSystem.Editor
 		{
 			rightPane.Clear();
 
+			foreach (var selectedEvent in selectedEvents)
+			{
+				if (selectedEvent != null)
+				{
+					rightPane.Add(CreateRightPanel(selectedEvent));
+				}
+				else
+				{
+					Close();
+					Open();
+				}
+			}
+			
+			/*
 			try
 			{
 				foreach (var selectedEvent in selectedEvents)
@@ -284,14 +304,101 @@ namespace ScriptableEventsSystem.Editor
 				Debug.LogWarning(e.StackTrace);
 				rootVisualElement.Clear();
 				CreateGUI();
-			}
+			}*/
 		}
 
 		private VisualElement CreateRightPanel(BaseGameEvent selectedEvent)
 		{
-			gameEventInspectorElement ??= new GameEventInspectorElement();
-			gameEventInspectorElement.SetGameEvent(selectedEvent);
-			return gameEventInspectorElement;
+			if (rightPanelContainer == null)
+			{
+				rightPanelContainer ??= new VisualElement();
+				
+				var titleContainer = new VisualElement()
+				{
+					style =
+					{
+						flexShrink = 1,
+						flexDirection = FlexDirection.Row,
+						justifyContent = Justify.Center,
+						paddingBottom = 10,
+						paddingLeft = 5,
+						paddingTop = 5,
+						paddingRight = 5,
+						overflow = Overflow.Hidden
+					}
+				};
+			
+				eventTitle =  new Label("title")
+				{
+					style =
+					{
+						flexGrow = 0,
+						justifyContent = Justify.Center,
+						unityFontStyleAndWeight = FontStyle.Bold,
+						unityTextAlign = TextAnchor.MiddleCenter,
+						fontSize = 20
+					},
+				};
+				titleContainer.Add(eventTitle);
+
+				typeLabel = new Label("type")
+				{
+					style =
+					{
+						flexGrow = 0,
+						justifyContent = Justify.FlexEnd,
+						unityFontStyleAndWeight = FontStyle.Italic,
+						unityTextAlign = TextAnchor.MiddleRight,
+						fontSize = 16,
+						color = Color.cyan
+					},
+				};
+				titleContainer.Add(typeLabel);
+				rightPanelContainer.Add(titleContainer);
+			}
+
+			eventInspector?.RemoveFromHierarchy();
+
+			var eventType = selectedEvent.GetType();
+			var gameVariableType = typeof(GameVariable<>);
+			
+			if (IsSubclassOfRawGeneric(eventType,gameVariableType))
+			{
+				eventInspector = new GameVariableInspectorElement(selectedEvent, false);
+				//eventInspector.styleSheets("unity-property-field__inspector-property");
+				//rightPanelContainer.Add(eventInspector);
+				rootVisualElement.Add(eventInspector);
+				
+				eventInspector.Insert(0,new IMGUIContainer(() =>
+				{
+					//UnityEditor.Editor.CreateCachedEditor(selectedEvent, typeof(BaseGameEventEditor), ref cacheEditor);
+					UnityEditor.Editor.CreateCachedEditor(selectedEvent, typeof(GameVariableEditor), ref cacheEditor);
+					cacheEditor.OnInspectorGUI();
+				}));
+			}
+			else
+			{
+				var gameEventInspectorElement = new GameEventInspectorElement(selectedEvent, true);
+				eventInspector = gameEventInspectorElement;
+				rightPanelContainer.Add(eventInspector);
+			}
+			
+			
+			eventTitle.text = selectedEvent.name;
+			var parameterType = selectedEvent.GetParameterType();
+
+			if (parameterType != null)
+			{
+				typeLabel.visible = true;
+				typeLabel.text = parameterType.Name;
+			}
+			else
+			{
+				typeLabel.visible = false;
+				typeLabel.text = string.Empty;
+			}
+	
+			return rightPanelContainer;
 		}
 
 
@@ -367,6 +474,22 @@ namespace ScriptableEventsSystem.Editor
 			filteredEventsListView.Focus();
 			await Task.Yield();
 			isEditingEventName = false;
+		}
+		
+		public static bool IsSubclassOfRawGeneric(Type toCheck, Type baseType)
+		{
+			while (toCheck != typeof(object))
+			{
+				Type cur = toCheck.IsGenericType ? toCheck.GetGenericTypeDefinition() : toCheck;
+				if (baseType == cur)
+				{
+					return true;
+				}
+
+				toCheck = toCheck.BaseType;
+			}
+
+			return false;
 		}
 	}
 }

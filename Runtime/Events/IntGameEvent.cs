@@ -2,7 +2,7 @@
 
 namespace GameEventsSystem.Events
 {
-	[CreateAssetMenu(menuName = "Scriptable Events/Int")]
+	[CreateAssetMenu(menuName = "Game Events/Int")]
 	public class IntGameEvent : GameEvent<int>
 	{
 	}

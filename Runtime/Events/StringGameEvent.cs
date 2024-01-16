@@ -2,7 +2,7 @@
 
 namespace GameEventsSystem.Events
 {
-	[CreateAssetMenu(menuName = "Scriptable Events/String")]
+	[CreateAssetMenu(menuName = "Game Events/String")]
 	public class StringGameEvent : GameEvent<string>
 	{
 	}
