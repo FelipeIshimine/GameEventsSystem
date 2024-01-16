@@ -59,7 +59,7 @@ namespace GameEventSystem.Editor
 		public override VisualElement CreateInspectorGUI()
 		{
 			Debug.Log(nameof(GameVariableEditor));
-			inspectorElement ??=  new GameVariableInspectorElement((BaseGameEvent)target,true);
+			inspectorElement ??=  new GameVariableInspectorElement((BaseGameEvent)target);
 			//inspectorElement.SetGameEvent((BaseGameEvent)target);
 			return inspectorElement;
 		}

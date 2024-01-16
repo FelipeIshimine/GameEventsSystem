@@ -10,7 +10,7 @@ namespace GameEventSystem.Editor.Events
 	{
 		private VisualElement valueContainer;
 
-		public GameVariableInspectorElement(BaseGameEvent selectedEvent,bool showScriptField) : base(selectedEvent,showScriptField)
+		public GameVariableInspectorElement(BaseGameEvent selectedEvent) : base(selectedEvent)
 		{
 		}
 		
@@ -21,7 +21,7 @@ namespace GameEventSystem.Editor.Events
 			
 			SerializedObject serializedObject = new SerializedObject(selectedEvent);
 
-			if (Application.isPlaying)
+			if (!Application.isPlaying)
 			{
 				var currentValueProperty = serializedObject.FindProperty("StartValue");
 				Debug.Log(currentValueProperty.propertyPath);
@@ -36,7 +36,7 @@ namespace GameEventSystem.Editor.Events
 					label = "Value",
 					visible = true
 				};
-				Insert(ShowScriptField?1:0,field);
+				Insert(1,field);
 			}
 			else
 			{
@@ -53,13 +53,8 @@ namespace GameEventSystem.Editor.Events
 					label = "Value",
 					visible = true
 				};
-				Insert(ShowScriptField?1:0,field);
+				Insert(1,field);
 			}
-			//Insert(1,valueContainer);
-			//Add(valueContainer);
-			
-			Add(new Label("ASDASDASDAS"));
-			Debug.Log("ASDASDASDAS");
 		}
 	}
 	

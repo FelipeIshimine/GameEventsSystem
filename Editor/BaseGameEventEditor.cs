@@ -23,7 +23,7 @@ namespace GameEventSystem.Editor
 
 		public override VisualElement CreateInspectorGUI()
 		{
-			inspectorElement ??=  new GameEventInspectorElement(gameEvent,true);
+			inspectorElement ??=  new GameEventInspectorElement(gameEvent);
 			return inspectorElement;
 		}
 	}

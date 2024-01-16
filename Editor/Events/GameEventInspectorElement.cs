@@ -15,7 +15,6 @@ namespace GameEventSystem.Editor.Events
 {
 	internal class GameEventInspectorElement : VisualElement
 	{
-		protected readonly bool ShowScriptField;
 		private readonly List<Object> assetsListFiltered = new List<Object>();
 		private readonly List<Object> contextAssetListFiltered = new List<Object>();
 		
@@ -51,24 +50,20 @@ namespace GameEventSystem.Editor.Events
 			Initialize();
 		}*/
 
-		public GameEventInspectorElement(BaseGameEvent gameEvent, bool showScriptField)
+		public GameEventInspectorElement(BaseGameEvent gameEvent)
 		{
-			this.ShowScriptField = showScriptField;
 			Initialize();
 			SetGameEvent(gameEvent);
 		}
 		
 		private void Initialize()
 		{
-			if(ShowScriptField)
+			scriptField = new ObjectField("Script")
 			{
-				scriptField = new ObjectField("Script")
-				{
-					objectType = typeof(MonoScript),
-				};
-				scriptField.SetEnabled(false);
-				Add(scriptField);
-			}
+				objectType = typeof(MonoScript),
+			};
+			scriptField.SetEnabled(false);
+			Add(scriptField);
 			
 			style.flexGrow = 1;
 

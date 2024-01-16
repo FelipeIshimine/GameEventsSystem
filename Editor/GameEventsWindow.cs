@@ -361,29 +361,15 @@ namespace ScriptableEventsSystem.Editor
 
 			var eventType = selectedEvent.GetType();
 			var gameVariableType = typeof(GameVariable<>);
+
 			
-			if (IsSubclassOfRawGeneric(eventType,gameVariableType))
-			{
-				eventInspector = new GameVariableInspectorElement(selectedEvent, false);
-				//eventInspector.styleSheets("unity-property-field__inspector-property");
-				//rightPanelContainer.Add(eventInspector);
-				rootVisualElement.Add(eventInspector);
-				
-				eventInspector.Insert(0,new IMGUIContainer(() =>
-				{
-					//UnityEditor.Editor.CreateCachedEditor(selectedEvent, typeof(BaseGameEventEditor), ref cacheEditor);
-					UnityEditor.Editor.CreateCachedEditor(selectedEvent, typeof(GameVariableEditor), ref cacheEditor);
-					cacheEditor.OnInspectorGUI();
-				}));
-			}
-			else
-			{
-				var gameEventInspectorElement = new GameEventInspectorElement(selectedEvent, true);
-				eventInspector = gameEventInspectorElement;
-				rightPanelContainer.Add(eventInspector);
-			}
+			UnityEditor.Editor.CreateCachedEditor(selectedEvent, null, ref cacheEditor);
+
+			eventInspector = cacheEditor.CreateInspectorGUI();
+			eventInspector.Bind(cacheEditor.serializedObject);
 			
-			
+			rightPanelContainer.Add(eventInspector);
+
 			eventTitle.text = selectedEvent.name;
 			var parameterType = selectedEvent.GetParameterType();
 
