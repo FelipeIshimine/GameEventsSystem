@@ -1,4 +1,4 @@
-﻿namespace ScriptableEventsSystem.Events
+﻿namespace GameEventsSystem.Events
 {
 	[System.Serializable]
 	public class BaseScriptableEventReceiver

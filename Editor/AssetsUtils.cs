@@ -6,7 +6,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace ScriptableEventsSystem.Editor
+namespace GameEventsSystem.Editor
 {
 	public static class AssetsUtils
 	{

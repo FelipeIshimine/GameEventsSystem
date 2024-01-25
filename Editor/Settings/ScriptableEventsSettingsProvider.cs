@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
-namespace ScriptableEventsSystem.Editor.Settings
+namespace GameEventsSystem.Editor.Settings
 {
 	public class ScriptableEventsSettingsProvider : SettingsProvider
 	{
@@ -21,16 +21,16 @@ namespace ScriptableEventsSystem.Editor.Settings
 			{
 				var serializedObject = new SerializedObject(settings);
 				var provider =
-					new ScriptableEventsSettingsProvider($"Project/{nameof(ScriptableEventsSystem)}",
+					new ScriptableEventsSettingsProvider($"Project/{nameof(GameEventsSystem)}",
 						SettingsScope.Project)
 					{
-						label = nameof(ScriptableEventsSystem),
+						label = nameof(GameEventsSystem),
 						// activateHandler is called when the user clicks on the Settings item in the Settings window.
 						activateHandler = (searchContext, rootElement) =>
 						{
 							var title = new Label()
 							{
-								text = nameof(ScriptableEventsSystem),
+								text = nameof(GameEventsSystem),
 								style =
 								{
 									fontSize = 25

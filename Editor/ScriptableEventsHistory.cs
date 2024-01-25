@@ -1,4 +1,4 @@
-﻿namespace ScriptableEventsSystem.Editor
+﻿namespace GameEventsSystem.Editor
 {
 	public static class ScriptableEventsHistory
 	{

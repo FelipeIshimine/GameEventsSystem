@@ -1,5 +1,5 @@
 ﻿using GameEventSystem.Receiver;
-using ScriptableEventsSystem.Listeners;
+using GameEventsSystem.Listeners;
 using UnityEngine;
 
 namespace GameEventSystem.Listeners

@@ -5,7 +5,7 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace ScriptableEventsSystem.Editor.Settings
+namespace GameEventsSystem.Editor.Settings
 {
 	public static class UIToolkitUtils
 	{

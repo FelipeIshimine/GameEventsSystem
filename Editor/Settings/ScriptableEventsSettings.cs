@@ -2,7 +2,7 @@
 using UnityEditor.ShortcutManagement;
 using UnityEngine;
 
-namespace ScriptableEventsSystem.Editor.Settings
+namespace GameEventsSystem.Editor.Settings
 {
 	class ScriptableEventsSettings : ScriptableObject
 	{

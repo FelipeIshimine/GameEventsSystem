@@ -1,7 +1,7 @@
 ﻿using GameEventSystem.Listeners;
 using UnityEngine;
 
-namespace ScriptableEventsSystem.Listeners
+namespace GameEventsSystem.Listeners
 {
 	public class Vector3GameEventListener : GameEventListener<Vector3> { }
 }

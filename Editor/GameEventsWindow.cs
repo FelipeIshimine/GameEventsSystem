@@ -1,19 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using GameEventsSystem.Editor.Settings;
 using GameEventsSystem.Events;
-using GameEventSystem.Editor;
-using GameEventSystem.Editor.Events;
 using GameEventSystem.GameVariables;
-using ScriptableEventsSystem.Editor.Settings;
-using ScriptableEventsSystem.Events;
 using UnityEditor;
 using UnityEditor.ShortcutManagement;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace ScriptableEventsSystem.Editor
+namespace GameEventsSystem.Editor
 {
 	public class GameEventsWindow : EditorWindow
 	{

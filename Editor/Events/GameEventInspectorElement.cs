@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using GameEventsSystem.Events;
-using ScriptableEventsSystem.Editor;
+using GameEventsSystem.Editor;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEditor.UIElements;

@@ -1,12 +1,11 @@
 ﻿using System.Reflection;
 using GameEventsSystem.Events;
-using ScriptableEventsSystem.Events;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace ScriptableEventsSystem.Editor
+namespace GameEventsSystem.Editor
 {
 	[CustomPropertyDrawer(typeof(BaseGameEvent), true)]
 	public class BaseGameEventDrawer : PropertyDrawer 

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace ScriptableEventsSystem.Editor
+namespace GameEventsSystem.Editor
 {
 	
 	/// <summary>

@@ -3,7 +3,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace ScriptableEventsSystem.Editor
+namespace GameEventsSystem.Editor
 {
 	public class SceneLoadDetectorWindow : EditorWindow
 	{

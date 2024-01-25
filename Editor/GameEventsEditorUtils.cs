@@ -1,11 +1,10 @@
 ﻿using System;
 using System.IO;
 using GameEventsSystem.Events;
-using ScriptableEventsSystem.Events;
 using UnityEditor;
 using UnityEngine;
 
-namespace ScriptableEventsSystem.Editor
+namespace GameEventsSystem.Editor
 {
 	public static class GameEventsEditorUtils
 	{

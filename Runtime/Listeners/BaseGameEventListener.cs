@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ScriptableEventsSystem.Listeners
+namespace GameEventsSystem.Listeners
 {
 	public abstract class BaseGameEventListener : MonoBehaviour
 	{

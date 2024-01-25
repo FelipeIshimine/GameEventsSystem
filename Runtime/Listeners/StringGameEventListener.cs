@@ -1,6 +1,6 @@
 ﻿using GameEventSystem.Listeners;
 
-namespace ScriptableEventsSystem.Listeners
+namespace GameEventsSystem.Listeners
 {
 	public class StringGameEventListener : GameEventListener<string> { }
 }

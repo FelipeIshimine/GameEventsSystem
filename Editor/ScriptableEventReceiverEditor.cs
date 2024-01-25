@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using GameEventsSystem.Events;
 using GameEventSystem.Receiver;
-using ScriptableEventsSystem.Editor;
+using GameEventsSystem.Editor;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
